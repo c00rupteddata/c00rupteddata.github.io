@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>ХАХАХАХА</title>
+  <style>
+    body {
+      font-family: "Verdana", sans-serif;
+      background: #1a1a1a;
+      color: #e0e0e0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      background: #2b2b2b;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+      text-align: center;
+      width: 340px;
+      border: 1px solid #ff9800;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    h2 {
+      color: #ff9800;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #cccccc;
+      margin-bottom: 20px;
+    }
+
+    input {
+      padding: 10px;
+      width: 80%;
+      border: 1px solid #555;
+      border-radius: 6px;
+      margin: 10px 0;
+      font-size: 16px;
+      text-align: center;
+      background: #1e1e1e;
+      color: #fff;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #ff9800;
+    }
+
+    button {
+      background: #ff9800;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      color: #1a1a1a;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #e68900;
+      transform: scale(1.05);
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #ff9800;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>проверьте свой возраст!</h2>
+    <p>введите возраст и случится магия.</p>
+    <input type="number" id="ageInput" placeholder="ваш возраст">
+    <br>
+    <button onclick="checkAge()">проверить</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function checkAge() {
+      const userAge = parseInt(document.getElementById("ageInput").value);
+      const bryanAge = 22;
+      const result = document.getElementById("result");
+
+      if (isNaN(userAge)) {
+        result.textContent = "введите корректный возраст!";
+        return;
+      }
+
+      if (userAge < bryanAge) {
+        const diff = bryanAge - userAge;
+        result.textContent = `bryan rondo старше вас на ${diff} ${yearWord(diff)}!`;
+      } else if (userAge === bryanAge) {
+        result.textContent = "так вы одногодки с bryan rondo 😠";
+      } else {
+        const diff = userAge - bryanAge;
+        result.textContent = `вы старше bryan rondo на ${diff} ${yearWord(diff)}!`;
+      }
+    }
+
+    function yearWord(num) {
+      if (num % 10 === 1 && num % 100 !== 11) return "год";
+      if ([2,3,4].includes(num % 10) && ![12,13,14].includes(num % 100)) return "года";
+      return "лет";
+    }
+  </script>
+</body>
+</html>
